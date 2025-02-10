@@ -239,6 +239,7 @@ if ($sub_event_code == "global") {
     ?>
     <h1><?= $event_datas["event_name"] ?></h1>
     <p>Liste des sous events:</p>
+    <?= getBuildedLeaderBoard($con, $event_code, "global"); ?>
     <ul>
         <?php
         $sub_events_res = mysqli_query($con, "SELECT * FROM `sub_events` WHERE event_code='$event_code'");
@@ -251,7 +252,6 @@ if ($sub_event_code == "global") {
         }
         ?>
     </ul>
-    <?= getLeaderBoard($con, $event_code, "global"); ?>
 <?php
     die();
 }

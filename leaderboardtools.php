@@ -6,7 +6,45 @@ function getLeaderBoard($con, $event_code,$sub_event_code){
     }else{
         $scores=getScores($con,$event_code,$sub_event_code);
     }
-
+    $leaderboard = [];
+    foreach ($scores as $player_id => $score) {
+        $leaderboard[] = $score;
+    }
+    usort($leaderboard, function ($a, $b) {
+        return $b["score"] - $a["score"];
+    });
+    return $leaderboard;
+}
+function getBuildedLeaderBoard($con, $event_code,$sub_event_code){
+    $leaderboard=getLeaderBoard($con,$event_code,$sub_event_code);
+    return buildLeaderBoard($leaderboard);
+}
+function buildLeaderBoard($lb){
+    ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $rank = 1;
+            foreach ($lb as $player) {
+                ?>
+                <tr>
+                    <td><?php echo $rank; ?></td>
+                    <td><?php echo $player["player_name"]; ?></td>
+                    <td><?php echo $player["score"]; ?></td>
+                </tr>
+                <?php
+                $rank++;
+            }
+            ?>
+    </table>
+    <?php
 }
 function getScores($con, $event_code,$sub_event_code){
     $score_res= mysqli_query($con, "SELECT * FROM `scores` WHERE event_code='$event_code' AND sub_event_code='$sub_event_code'");
