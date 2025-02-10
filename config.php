@@ -1,4 +1,5 @@
 <?php
+require "env.php";
 $_db_events_format = <<<SQL
 CREATE TABLE events (
     event_code VARCHAR(255) PRIMARY KEY,
