@@ -56,7 +56,7 @@ function getScores($con, $event_code,$sub_event_code){
     return $scores;
 }
 function getPlayerName($con, $player_id){
-    $player_res = mysqli_query($con, "SELECT * FROM `players` WHERE player_id='$player_id'");
+    $player_res = mysqli_query($con, "SELECT * FROM `event_players` WHERE player_id='$player_id'");
     $player = mysqli_fetch_assoc($player_res);
     return $player["player_name"]??"Unknown (ID: $player_id)";
 }
