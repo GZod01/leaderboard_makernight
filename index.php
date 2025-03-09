@@ -167,7 +167,8 @@ if (isset($_GET["admin"])) {
                         die("WARNING ! sub event not started");
                     }
                     $player_id = $_POST["player_id"];
-                    $score_time = strtotime($_POST["score_time"]);
+                    $timelength = strtotime($_POST["score_time"])-$start_time;
+                    $score_time = $timelength;
                     if($score_time<$sub_event_datas["start_time"]){
                         die("WARNING ! score time is before start time <a href='?event_code=$event_code&admin=score&sub_event_code=$sub_event_code'>refresh</a>");
                     }
@@ -177,7 +178,6 @@ if (isset($_GET["admin"])) {
                         //TODO: check this if code block when implementing "http request speedrun" (for dev speedrun or other things that can be complete with a special http request)
                         // SPEEDRUN SCORE CALCULATION
                         $start_time = $sub_event_datas["start_time"];
-                        $timelength = $score_time-$start_time;
                         $get_position_in_classment = mysqli_query($con, "SELECT score_time FROM `scores` WHERE event_code='$event_code' AND sub_event_code='$sub_event_code' AND score_time<$score_time ORDER BY score_time ASC");
                         $position_in_classment = mysqli_num_rows($get_position_in_classment)+1;
                         $bestscore=$timelength;
