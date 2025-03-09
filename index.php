@@ -183,7 +183,7 @@ if (isset($_GET["admin"])) {
                         $bestscore=$timelength;
                         if($position_in_classment!=1){
                             $gpic=$get_position_in_classment->fetch_all()[0][0];
-                            print_r($gpic);
+                            // print_r($gpic);
                             $bestscore = $gpic[0][0];
                         }
                         $score = (20000*$bestscore)/($timelength*$position_in_classment);
@@ -193,7 +193,7 @@ if (isset($_GET["admin"])) {
                     }
                     
                     $query = ("INSERT INTO `scores` (event_code, sub_event_code, player_id, score, score_time) VALUES ('$event_code', '$sub_event_code', '$player_id', $score, $score_time) ON DUPLICATE KEY UPDATE score=$score, score_time=$score_time");
-                    die($query.print_r(["post"=>$_POST,"timelength"=>$timelength,"bestscore"=>$bestscore,"pos_in_class"=>$position_in_classment],true));
+                    // die($query.print_r(["post"=>$_POST,"timelength"=>$timelength,"bestscore"=>$bestscore,"pos_in_class"=>$position_in_classment],true));
                     mysqli_query($con, $query);
                 }
                 ?>
