@@ -47,6 +47,7 @@ if (isset($_GET["admin"])) {
                     $player_name = mysqli_real_escape_string($con,$_POST["player_name"]);
                     $player_id = md5(uniqid($player_name));
                     mysqli_query($con, "INSERT INTO `event_players` (event_code, player_id, player_name) VALUES ('$event_code', '$player_id', '$player_name')");
+		    die(header("Location: ?event_code=$event_code&admin=players&add"));
                 }
                 ?>
                 <form action="" method="post">
