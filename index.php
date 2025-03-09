@@ -168,6 +168,9 @@ if (isset($_GET["admin"])) {
                     }
                     $player_id = $_POST["player_id"];
                     $score_time = strtotime($_POST["score_time"]);
+                    if($score_time<$sub_event_datas["start_time"]){
+                        die("WARNING ! score time is before start time <a href='?event_code=$event_code&admin=score&sub_event_code=$sub_event_code'>refresh</a>");
+                    }
                     $score = 0;
                     if($is_speedrun){
                         //TODO: check this if code block when implementing "http request speedrun" (for dev speedrun or other things that can be complete with a special http request)
@@ -181,6 +184,7 @@ if (isset($_GET["admin"])) {
                             $bestscore = $get_position_in_classment->fetch_all()[0][0];
                         }
                         $score = (20000*$bestscore)/($timelength*$position_in_classment);
+                        $score = intval($score);
                     }else{
                         $score = intval($_POST["score"]);
                     }
