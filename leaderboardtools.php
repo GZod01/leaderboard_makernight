@@ -50,8 +50,8 @@ function getScores($con, $event_code,$sub_event_code){
     $score_res= mysqli_query($con, "SELECT * FROM `scores` WHERE event_code='$event_code' AND sub_event_code='$sub_event_code'");
     $scores = [];
     while ($score = mysqli_fetch_assoc($score_res)) {
-        $scores[$score["player_id"]] = $score;
         $score["player_name"]=getPlayerName($con,$score["player_id"]);
+        $scores[$score["player_id"]] = $score;
     }
     return $scores;
 }
