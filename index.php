@@ -172,6 +172,7 @@ if (isset($_GET["admin"])) {
                         die("WARNING ! score time is before start time <a href='?event_code=$event_code&admin=score&sub_event_code=$sub_event_code'>refresh</a>");
                     }
                     $score = 0;
+                    $timelength=0;$position_in_classment=0;$bestscore=0;
                     if($is_speedrun){
                         //TODO: check this if code block when implementing "http request speedrun" (for dev speedrun or other things that can be complete with a special http request)
                         // SPEEDRUN SCORE CALCULATION
@@ -190,7 +191,7 @@ if (isset($_GET["admin"])) {
                     }
                     
                     $query = ("INSERT INTO `scores` (event_code, sub_event_code, player_id, score, score_time) VALUES ('$event_code', '$sub_event_code', '$player_id', $score, $score_time) ON DUPLICATE KEY UPDATE score=$score, score_time=$score_time");
-                    die($query);
+                    die($query.print_r(["post"=>$_POST,"timelength"=>$timelength,"bestscore"=>$bestscore,"pos_in_class"=>$position_in_classment],true));
                     mysqli_query($con, $query);
                 }
                 ?>
