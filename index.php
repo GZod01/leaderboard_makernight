@@ -184,7 +184,10 @@ if (isset($_GET["admin"])) {
                     }else{
                         $score = intval($_POST["score"]);
                     }
-                    mysqli_query($con, "INSERT INTO `scores` (event_code, sub_event_code, player_id, score, score_time) VALUES ('$event_code', '$sub_event_code', '$player_id', $score, $score_time) ON DUPLICATE KEY UPDATE score=$score, score_time=$score_time");
+                    
+                    $query = ("INSERT INTO `scores` (event_code, sub_event_code, player_id, score, score_time) VALUES ('$event_code', '$sub_event_code', '$player_id', $score, $score_time) ON DUPLICATE KEY UPDATE score=$score, score_time=$score_time");
+                    die($query);
+                    mysqli_query($con, $query);
                 }
                 ?>
                 <h1>Admin de l'event <?= $event_datas["event_name"] ?></h1>
