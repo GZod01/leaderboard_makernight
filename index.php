@@ -1,4 +1,7 @@
 <?php
+
+use Dom\Mysql;
+
 session_start();
 require "config.php";
 require "leaderboardtools.php";
@@ -227,20 +230,29 @@ if (isset($_GET["admin"])) {
         <a href="/?event_code=<?= $event_code ?>">Retour</a>
         <h1>Admin de l'event <?= $event_datas["event_name"] ?></h1>
         <h2><a href="/?event_code=<?= $event_code ?>&admin=players">Gestion des joueurs</a></h2>
-        <h2><a href="/?event_code=<?= $event_code ?>&admin=subevents">Gestion des sous events</a></h2>
-        <h2><a href="/?event_code=<?= $event_code ?>&admin=scores">Gestion des scores</a></h2>
+        <h2><a href="/?event_code=<?= $event_code ?>&admin=subevents">Gestion des sous events (et gestion des scores par sous event)</a></h2>
     <?php
     }
 }
 $sub_event_code = "global";
 if (isset($_GET["sub_event_code"])) {
     $sub_event_code = $_GET["sub_event_code"];
+    $sub_event_data_res = mysqli_query($con, "SELECT * FROM `sub_events` WHERE sub_event_code='$escaped_sub_evt_code'");
+    if(mysqli_num_rows($sub_event_data_res)<1){
+        die("<p><b>Ce sous-event n'existe pas</b> <a href='/?event_code=$event_code'>retourner à l'accueil de l'event.</a></p>");
+    }
+    $sub_event_data=mysqli_fetch_assoc($sub_event_data_res);
+    ?>
+    <h1><?= $event_datas["event_name"] ?></h1>
+    <h2>Sous event: <?=$sub_event_data["sub_event_name"]?></h2>
+    <?=getBuildedLeaderBoard($con, $event_code, $sub_event_code);?>
+    <?php
 }
 if ($sub_event_code == "global") {
     ?>
     <h1><?= $event_datas["event_name"] ?></h1>
-    <p>Liste des sous events:</p>
     <?= getBuildedLeaderBoard($con, $event_code, "global"); ?>
+    <p>Liste des sous events:</p>
     <ul>
         <?php
         $sub_events_res = mysqli_query($con, "SELECT * FROM `sub_events` WHERE event_code='$event_code'");

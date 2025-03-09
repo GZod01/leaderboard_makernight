@@ -63,7 +63,7 @@ function getScoreGlobal($con, $event_code){
             if(!isset($scores[$player_id])){
                 $scores[$player_id]=["player_id"=>$player_id,"score"=>0,"player_name"=>$score["player_name"],"sub_scores_list"=>[]];
             }
-            $scores[$player_id]["score"]+=$score["score"];
+            $scores[$player_id]["score"]+=$sub_event["multiplier"]*$score["score"];
             $scores[$player_id]["sub_scores_list"][$sub_event["sub_event_code"]]=$score["score"];
         }
     }
