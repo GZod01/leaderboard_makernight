@@ -127,6 +127,10 @@ if (isset($_GET["admin"])) {
             }else if (isset($_GET["start"])) {
                 if (isset($_POST["sub_event_code"])) {
                     $sub_event_code = $_POST["sub_event_code"];
+                    $check_if_event_started = getSubEventData($con, $event_code,$sub_event_code);
+                    if($check_if_event_started["start_time"]!=0){
+                        die("<p>Sub event already started <a href='/?event_code=$event_code&admin=subevents&start'>return</a></p>");
+                    }
                     mysqli_query($con, "UPDATE `sub_events` SET start_time=".time()." WHERE event_code='$event_code' AND sub_event_code='$sub_event_code'");
                 }
                 foreach ($sub_events as $sub_event) {
@@ -241,7 +245,7 @@ if (isset($_GET["admin"])) {
         <a href="/?event_code=<?= $event_code ?>">Retour</a>
         <h1>Admin de l'event <?= $event_datas["event_name"] ?></h1>
         <h2><a href="/?event_code=<?= $event_code ?>&admin=players">Gestion des joueurs</a></h2>
-        <h2><a href="/?event_code=<?= $event_code ?>&admin=subevents">Gestion des sous events (et gestion des scores par sous event)</a></h2>
+        <h2><a href="/?event_code=<?= $event_code ?>&admin=subevents">Gestion des sous events</a></h2>
         <h2><a href="/?event_code=<?= $event_code ?>&admin=score">Gestion des scores</a></h2>
     <?php
     }
