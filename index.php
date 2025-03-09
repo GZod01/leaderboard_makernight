@@ -231,6 +231,7 @@ if (isset($_GET["admin"])) {
         <h1>Admin de l'event <?= $event_datas["event_name"] ?></h1>
         <h2><a href="/?event_code=<?= $event_code ?>&admin=players">Gestion des joueurs</a></h2>
         <h2><a href="/?event_code=<?= $event_code ?>&admin=subevents">Gestion des sous events (et gestion des scores par sous event)</a></h2>
+        <h2><a href="/?event_code=<?= $event_code ?>&admin=score">Gestion des scores</a></h2>
     <?php
     }
 }
