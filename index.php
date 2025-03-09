@@ -237,6 +237,7 @@ if (isset($_GET["admin"])) {
 $sub_event_code = "global";
 if (isset($_GET["sub_event_code"])) {
     $sub_event_code = $_GET["sub_event_code"];
+    $escaped_sub_evt_code=mysqli_real_escape_string($con, $sub_event_code);
     $sub_event_data_res = mysqli_query($con, "SELECT * FROM `sub_events` WHERE sub_event_code='$escaped_sub_evt_code'");
     if(mysqli_num_rows($sub_event_data_res)<1){
         die("<p><b>Ce sous-event n'existe pas</b> <a href='/?event_code=$event_code'>retourner à l'accueil de l'event.</a></p>");
