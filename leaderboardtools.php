@@ -51,8 +51,14 @@ function getScores($con, $event_code,$sub_event_code){
     $scores = [];
     while ($score = mysqli_fetch_assoc($score_res)) {
         $scores[$score["player_id"]] = $score;
+        $score["player_name"]=getPlayerName($con,$score["player_id"]);
     }
     return $scores;
+}
+function getPlayerName($con, $player_id){
+    $player_res = mysqli_query($con, "SELECT * FROM `players` WHERE player_id='$player_id'");
+    $player = mysqli_fetch_assoc($player_res);
+    return $player["player_name"]??"Unknown (ID: $player_id)";
 }
 function getScoreGlobal($con, $event_code){
     $sub_event_list=getSubEventsList($con,$event_code);
