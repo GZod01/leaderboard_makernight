@@ -182,7 +182,9 @@ if (isset($_GET["admin"])) {
                         $position_in_classment = mysqli_num_rows($get_position_in_classment)+1;
                         $bestscore=$timelength;
                         if($position_in_classment!=1){
-                            $bestscore = $get_position_in_classment->fetch_all()[0][0];
+                            $gpic=$get_position_in_classment->fetch_all()[0][0];
+                            print_r($gpic);
+                            $bestscore = $gpic[0][0];
                         }
                         $score = (20000*$bestscore)/($timelength*$position_in_classment);
                         $score = intval($score);
