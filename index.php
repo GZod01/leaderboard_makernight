@@ -263,6 +263,20 @@ if (isset($_GET["sub_event_code"])) {
     <h1><?= $event_datas["event_name"] ?></h1>
     <h2>Sous event: <?=$sub_event_data["sub_event_name"]?></h2>
     <?=getBuildedLeaderBoard($con, $event_code, $sub_event_code);?>
+    <p>Liste des sous events:</p>
+    <ul>
+        <li><a href="/?event_code=<?=$event_code?>">Global</a></li>
+        <?php
+        $sub_events_res = mysqli_query($con, "SELECT * FROM `sub_events` WHERE event_code='$event_code'");
+        $sub_event_lists = [];
+        while ($sub_event = mysqli_fetch_assoc($sub_events_res)) {
+            $sub_event_lists[] = $sub_event;
+        ?>
+            <li><a href="/?event_code=<?= $event_code ?>&sub_event_code=<?= $sub_event["sub_event_code"] ?>"><?= $sub_event["sub_event_name"] ?></a></li>
+        <?php
+        }
+        ?>
+    </ul>
     <?php
 }
 if ($sub_event_code == "global") {
