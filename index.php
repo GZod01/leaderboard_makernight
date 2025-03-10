@@ -128,7 +128,6 @@ if (isset($_GET["admin"])) {
                 if (isset($_POST["sub_event_code"])) {
                     $sub_event_code = $_POST["sub_event_code"];
                     $check_if_event_started = getSubEventData($con, $event_code,$sub_event_code);
-                    die(print_r($check_if_event_started,true));
                     if($check_if_event_started["start_time"]!=0){
                         die("<p>Sub event already started <a href='/?event_code=$event_code&admin=subevents&start'>return</a></p>");
                     }
