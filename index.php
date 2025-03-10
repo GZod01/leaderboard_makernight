@@ -165,7 +165,6 @@ if (isset($_GET["admin"])) {
                 if($sub_event_datas===false){
                     die("Sub event not found");
                 }
-                die(print_r($sub_event_datas,true));
                 $is_speedrun = $sub_event_datas["sub_event_type"]==1;
                 if(isset($_POST["player_id"]) and ($is_speedrun?isset($_POST["score_time"]):isset($_POST["score"]))){
                     if($sub_event_datas["start_time"]==0){
