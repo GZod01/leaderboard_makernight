@@ -172,7 +172,7 @@ if (isset($_GET["admin"])) {
                     }
                     $player_id = $_POST["player_id"];
                     $start_time = $sub_event_datas["start_time"];
-                    $timelength = strtotime($_POST["score_time"])-$start_time;
+                    $timelength = strtotime($_POST["score_time"]??$start_time+1)-$start_time;
                     $score_time = $timelength;
                     if($timelength<=0){
                         die("WARNING ! score time is before start time <a href='?event_code=$event_code&admin=score&sub_event_code=$sub_event_code'>refresh</a>");
