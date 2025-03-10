@@ -196,7 +196,7 @@ if (isset($_GET["admin"])) {
                     }
                     
                     $query = ("INSERT INTO `scores` (event_code, sub_event_code, player_id, score, score_time) VALUES ('$event_code', '$sub_event_code', '$player_id', $score, $score_time) ON DUPLICATE KEY UPDATE score=$score, score_time=$score_time");
-                    // die($query.print_r(["post"=>$_POST,"timelength"=>$timelength,"bestscore"=>$bestscore,"pos_in_class"=>$position_in_classment],true));
+                    die($query.print_r(["post"=>$_POST,"timelength"=>$timelength,"bestscore"=>$bestscore,"pos_in_class"=>$position_in_classment],true));
                     mysqli_query($con, $query);
                 }
                 ?>
