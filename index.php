@@ -172,7 +172,7 @@ if (isset($_GET["admin"])) {
                     }
                     $player_id = $_POST["player_id"];
                     $start_time = $sub_event_datas["start_time"];
-                    $timelength = strtotime($_POST["score_time"]??$start_time+1)-$start_time;
+                    $timelength = strtotime($_POST["score_time"]??(date("D, d M Y H:i:s",$start_time+1)))-$start_time;
                     $score_time = $timelength;
                     if($timelength<=0){
                         die("WARNING ! score time is before start time <a href='?event_code=$event_code&admin=score&sub_event_code=$sub_event_code'>refresh</a>");
@@ -196,7 +196,7 @@ if (isset($_GET["admin"])) {
                     }
                     
                     $query = ("INSERT INTO `scores` (event_code, sub_event_code, player_id, score, score_time) VALUES ('$event_code', '$sub_event_code', '$player_id', $score, $score_time) ON DUPLICATE KEY UPDATE score=$score, score_time=$score_time");
-                    die($query.print_r(["post"=>$_POST,"timelength"=>$timelength,"bestscore"=>$bestscore,"pos_in_class"=>$position_in_classment],true));
+                    die($query.print_r(["post"=>$_POST,"timelength"=>$timelength],true));
                     mysqli_query($con, $query);
                 }
                 ?>
