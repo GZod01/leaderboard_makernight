@@ -107,6 +107,8 @@ if (isset($_GET["admin"])) {
                         <option value=0>Score</option>
                         <option value=1>Speedrun</option>
                     </select></label>
+                    <label for=sub_event_multiplier>Global score multiplier:<input type=number name=sub_event_multiplier id=sub_event_multiplier></label>
+                    <label for=sub_event_http_password>Event HTTP Request password:<input type=text name=sub_event_http_password id=sub_event_http_password></label>
                     <input type=submit value=Valider>
                 </form>
                 <?php

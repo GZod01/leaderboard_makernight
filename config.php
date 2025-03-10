@@ -15,6 +15,7 @@ CREATE TABLE sub_events (
     sub_event_type INT(2) COMMENT '0: score, 1: speedrun(time based score)',
     start_time INT(11) DEFAULT 0,
     multiplier INT(11) DEFAULT 1,
+    http_password VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (event_code, sub_event_code)
 )
 SQL;
