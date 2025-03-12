@@ -174,7 +174,7 @@ if (isset($_GET["admin"])) {
                     }
                     $player_id = $_POST["player_id"];
                     $start_time = $sub_event_datas["start_time"];
-                    $timelength = strtotime($_POST["score_time"]??(date("D, d M Y H:i:s",$start_time+1)))-$start_time;
+                    $timelength = time()-$start_time;
                     $score_time = $timelength;
                     if($timelength<=0){
                         die("WARNING ! score time is before start time <a href='?event_code=$event_code&admin=score&sub_event_code=$sub_event_code'>refresh</a>");
@@ -218,8 +218,7 @@ if (isset($_GET["admin"])) {
                     <?php
                     if($is_speedrun){
                     ?>
-                        <!-- <label for=score_time>Temps:<input type=time step="1" name=score_time id=score_time></label> -->
-                        <p>Le temps sera défini sur le moment de l'envoi de ce formulaire</p>
+                        <label for=score_time>Le temps sera défini sur le moment de l'envoi de ce formulaire<input hidden></label>
                     <?php
                     }else{
                     ?>
