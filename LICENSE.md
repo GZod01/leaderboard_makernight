@@ -1,4 +1,4 @@
-Copyright (c) UniMakers & GZod01.
+Leaderboard_makernight copyright (c) UniMakers & GZod01.
 This project is under CC-BY-SA 4.0 license.
 
 Attribution-ShareAlike 4.0 International
