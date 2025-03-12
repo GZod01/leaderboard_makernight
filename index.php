@@ -218,7 +218,7 @@ if (isset($_GET["admin"])) {
                     <?php
                     if($is_speedrun){
                     ?>
-                        <label for=score_time>Le temps sera défini sur le moment de l'envoi de ce formulaire<input hidden></label>
+                        <label for=score_time>Le temps sera défini sur le moment de l'envoi de ce formulaire<input hidden name=score_time value=1></label>
                     <?php
                     }else{
                     ?>
