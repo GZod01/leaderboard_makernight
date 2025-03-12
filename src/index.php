@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -14,13 +13,15 @@ $event_code = $_GET["event_code"];
 $event_code= mysqli_real_escape_string($con,$event_code);
 $event_datas = getEventData($con, $event_code);
 ?>
-<style>
-    table.lb{
-        thead{
-
-        }
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?=siteConf("title");?></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
 <?php
 if ($event_datas === false) {
     die("Event not found");
