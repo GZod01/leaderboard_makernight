@@ -1,13 +1,15 @@
 <?php
 header('Content-Type: application/json');
-if (!isset($_POST["password"], $_POST["uuid"], $_POST["event_code"], $_POST["sub_event_code"])) {
+$jsonpost = json_decode(file_get_contents("php://input"),true);
+$_superpost = array_merge($_REQUEST,$_POST,$_GET,$jsonpost);
+if (!isset($_superpost["password"], $_superpost["uuid"], $_superpost["event_code"], $_superpost["sub_event_code"])) {
     die(json_encode(["status" => "error", "message" => "Invalid Request"]));
 }
 require "config.php";
-$uuid = $_POST["uuid"];
-$event_code = $_POST["event_code"];
-$sub_event_code = $_POST["sub_event_code"];
-$password = $_POST["password"];
+$uuid = $_superpost["uuid"];
+$event_code = $_superpost["event_code"];
+$sub_event_code = $_superpost["sub_event_code"];
+$password = $_superpost["password"];
 $event_data = getEventData($con, $event_code);
 if ($event_data === false) {
     die(json_encode(["status" => "error", "message" => "Event not found"]));
