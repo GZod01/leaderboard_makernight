@@ -52,7 +52,7 @@ if (isset($_GET["admin"])) {
                     $player_name = mysqli_real_escape_string($con,$_POST["player_name"]);
                     $player_id = md5(uniqid($player_name));
                     mysqli_query($con, "INSERT INTO `event_players` (event_code, player_id, player_name) VALUES ('$event_code', '$player_id', '$player_name')");
-		    die(header("Location: ?event_code=$event_code&admin=players&add"));
+                    die(header("Location: ?event_code=$event_code&admin=players&add"));
                 }
                 ?>
                 <form action="" method="post">
@@ -191,7 +191,7 @@ if (isset($_GET["admin"])) {
                             // print_r($gpic);
                             $bestscore = $gpic[0][0];
                         }
-                        $score = (20000*$bestscore)/($timelength*$position_in_classment);
+                        $score = 10-($timelength/$bestscore);
                         $score = intval($score);
                     }else{
                         $score = intval($_POST["score"]);
@@ -217,7 +217,8 @@ if (isset($_GET["admin"])) {
                     <?php
                     if($is_speedrun){
                     ?>
-                        <label for=score_time>Temps:<input type=time step="1" name=score_time id=score_time></label>
+                        <!-- <label for=score_time>Temps:<input type=time step="1" name=score_time id=score_time></label> -->
+                        <p>Le temps sera défini sur le moment de l'envoi de ce formulaire</p>
                     <?php
                     }else{
                     ?>
