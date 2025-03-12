@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+ob_start();
 session_start();
 require "config.php";
 require "leaderboardtools.php";
@@ -13,6 +13,15 @@ if (!isset($_GET["event_code"])) {
 $event_code = $_GET["event_code"];
 $event_code= mysqli_real_escape_string($con,$event_code);
 $event_datas = getEventData($con, $event_code);
+?>
+<style>
+    table.lb{
+        thead{
+
+        }
+    }
+</style>
+<?php
 if ($event_datas === false) {
     die("Event not found");
 }

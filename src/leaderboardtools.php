@@ -21,7 +21,7 @@ function getBuildedLeaderBoard($con, $event_code,$sub_event_code){
 }
 function buildLeaderBoard($lb){
     ?>
-    <table>
+    <table class=lb>
         <thead>
             <tr>
                 <th>Rank</th>

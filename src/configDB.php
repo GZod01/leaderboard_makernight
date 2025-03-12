@@ -7,9 +7,16 @@ CREATE TABLE events (
     admin_pass VARCHAR(255)
 )
 SQL;
+$db_event_category_format=<<<SQL
+CREATE TABLE event_categories (
+    event_code VARCHAR(255),
+    evt_cat_code VARCHAR(255),
+
+)
+SQL;
 $_db_sub_events_format = <<<SQL
 CREATE TABLE sub_events (
-    event_code VARCHAR(255),
+    evt_cat_code VARCHAR(255),
     sub_event_code VARCHAR(255),
     sub_event_name VARCHAR(255),
     sub_event_type INT(2) COMMENT '0: score, 1: speedrun(time based score)',
