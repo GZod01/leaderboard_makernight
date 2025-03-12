@@ -192,9 +192,7 @@ if (isset($_GET["admin"])) {
                             $bestscore = $gpic[0][0];
                         }
                         // die(print_r(["bs"=>$bestscore,"pi"=>$position_in_classment],true));
-                        $score = 10-($timelength/$bestscore);
-                        $score*=100;
-                        $score = intval($score);
+                        $score=1000/$position_in_classment;
                     }else{
                         $score = intval($_POST["score"]);
                     }
